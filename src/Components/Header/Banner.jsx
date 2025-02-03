@@ -6,11 +6,11 @@ import { motion } from 'motion/react';
 const Banner = () => {
   return (
     <div>
-      <div className="hero bg-gradient-to-r from-[#ecf3f4] to-[#d9e7e9]">
+      <div className="hero bg-gradient-to-r from-[#ecf3f4] to-[#d9e7e9] ">
         <div className="hero-content flex-col lg:flex-row-reverse ">
           <div className="md:w-1/2 flex flex-col gap-4">
             <motion.img
-              animate={{ y: [10, 50, 10] }}
+              animate={{ y: [50, 100, 50] }}
               transition={{ duration: 10, delay: 1, repeat: Infinity }}
               src={BannerHappyImage2}
               className="max-w-sm rounded-t-[45px] rounded-br-[45px] border-l-8 border-b-8 border-[#A2C4C9] shadow-2xl "
@@ -23,10 +23,10 @@ const Banner = () => {
             />
           </div>
           <div className="md:w-1/2">
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold">
               The Easiest Way to Get Your New Job!
             </h1>
-            <p className="py-6">
+            <p className="py-5">
               Each month, more than 3 million job seekers turn to website in
               their search for work, making over 140,000 applications every
               single day.

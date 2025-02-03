@@ -1,21 +1,33 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/Photo/Loest logo.png';
+import useAuth from '../../Provider/useAuth';
 
 const Navbar = () => {
+  const { User, LogOutUser } = useAuth();
+
   const links = (
-    <div className="md:flex gap-7">
+    <div className="md:flex gap-7 font-bold">
       <NavLink>Home</NavLink>
       <NavLink>Find a Job</NavLink>
-      <NavLink>Recruiters</NavLink>
-      <NavLink>Candidates</NavLink>
-      <NavLink>Pages</NavLink>
+      <NavLink to="/addNewJob">Add Job</NavLink>
+      <NavLink to="/myApplyJobs">My Apply Jobs</NavLink>
       <NavLink>Contact</NavLink>
     </div>
   );
 
+  const handleLogOut = () => {
+    LogOutUser()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
   return (
-    <div className="navbar bg-gradient-to-b from-[#A2C4C9] to-[#ecf3f4] py-3">
+    <div className="navbar bg-gradient-to-b from-[#A2C4C9] border to-[#ecf3f4] py-5">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,7 +64,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {User ? (
+          <button onClick={handleLogOut} className="btn">
+            Log Out
+          </button>
+        ) : (
+          <Link to="/login">
+            <button className="btn">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );
